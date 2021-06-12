@@ -1,4 +1,3 @@
-from itertools import combinations
 import sys
 import csv
 
@@ -12,35 +11,33 @@ def calc_benef(lst):
     return (sum(calc))
 
 
-def somme(lst):
-    _sum = []
-    for l in lst:
-        _sum.append(l[1])
-    return (sum(_sum))
+def takeThird(elem):
+    return elem[2]
 
 
 def make_sol(lst):
-
-    actions_lst = lst
-    benef = 0
-
-    for l in range(len(actions_lst)):
-
-        combs = combinations(actions_lst, l + 1)
-        for comb in combs:
-            _sum = somme(comb)
-            if _sum <= MAX_PRICE:
-                _benef = calc_benef(comb)
-
-                if _benef > benef:
-                    benef = _benef
-                    best_comb = comb
     
+    actions_lst = lst
+    comb = []
+    price = 0
+    actions = sorted(actions_lst, key=takeThird, reverse=True)
+
+    for act in actions:
+        if price == MAX_PRICE:
+            break
+        elif act[1] <= 0:
+            pass
+        elif (price + act[1]) > MAX_PRICE:
+            pass
+        else:
+            comb.append(act)
+            price += act[1]
+
     print('Meilleurs combinaison trouvée: ')
-    for comb in best_comb:
-        print(comb)
-    print('Prix: ', somme(best_comb), '€')
-    print('Bénéfice: +', benef, '€ au bout de 2 ans.')
+    for c in comb:
+        print(c)
+    print('Prix: ', price, '€')
+    print('Bénéfice: +', calc_benef(comb), '€ au bout de 2 ans.')
 
 
 try:
@@ -53,7 +50,7 @@ try:
                 float(rows[1]),
                 float(rows[2].replace('%', ''))]
             )
-
+        
         make_sol(actions_lst)
 
 except FileNotFoundError:

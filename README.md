@@ -10,8 +10,8 @@ Installer [Python 3](https://www.python.org/downloads/).
 ## Utilisation
 1. Lancer le programme avec en paramètre le fichier
 ```cmd
-py bruteforce.py nom_du_fichier.csv
-py optimized.py nom_du_fichier.csv
+python bruteforce.py nom_du_fichier.csv
+python optimized.py nom_du_fichier.csv
 ```
 
 ## Informations

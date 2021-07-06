@@ -1,8 +1,10 @@
 import sys
 import csv
+import time
 from math import ceil
 
 MAX_PRICE=500
+start_time = time.time()
 
 def somme(lst):
     _sum = []
@@ -42,6 +44,7 @@ def sacADos(lst):
         print(c[0])
     print('Prix: ~', somme(comb)/10 , '€')
     print('Bénéfice: +', matrice[-1][-1], '€ au bout de 2 ans.')
+    print ('Exécution: ', time.time() - start_time, "secondes")
 
 
 try:
@@ -58,10 +61,7 @@ try:
                     float(float(rows[1]) * float(rows[2].replace('%', '')) / 100)]
                 )
 
-
-
         sacADos(actions_lst)
-
 
 except FileNotFoundError:
     print("Le fichier n'existe pas. Veuillez vérifier le nom.")

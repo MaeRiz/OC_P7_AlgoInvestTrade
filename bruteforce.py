@@ -1,9 +1,10 @@
 from itertools import combinations
 import sys
 import csv
+import time
 
 MAX_PRICE = 500
-
+start_time = time.time()
 
 def calc_benef(lst):
     calc = []
@@ -41,6 +42,7 @@ def make_sol(lst):
         print(comb)
     print('Prix: ', somme(best_comb), '€')
     print('Bénéfice: +', benef, '€ au bout de 2 ans.')
+    print ('Exécution: ', time.time() - start_time, "secondes")
 
 
 try:
@@ -58,3 +60,5 @@ try:
 
 except FileNotFoundError:
     print("Le fichier n'existe pas. Veuillez vérifier le nom.")
+
+
